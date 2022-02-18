@@ -69,8 +69,10 @@ for (i = 0; i < uniqueNames.length; i++) {
     opt.innerHTML = uniqueNames[i];
     selectbox.appendChild(opt);
 }
-var scale = L.control.scale();
-scale.addTo(map);
+L.control.scale({
+  position: 'bottomright',
+  imperial: false
+}).addTo(map);
 map.attributionControl.setPrefix(
     '&copy; <a href="https://sites.google.com/view/fmtcultura/projeto">Projecto Alminhas</a>' + ' &copy; Mapa Interactivo: <a href="mailto:ezcorreia@gmail.com">Ezequiel Correia</a> | <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>'
 );
@@ -88,7 +90,7 @@ function atributos(feature, layer) {
                 if (obs == null) {
                     obs = "";
                 } else {
-                    obs = "<a href='" + feature.properties["OBS"] + "' target='popup'><b>Ficha de inventário</b></a>";
+                    obs = "<a href='" + feature.properties["OBS"] + "' target='popup'><b>Ficha descritiva e fontes</b></a>";
                 }
                 foto = feature.properties["gx_media_links"];
                 sidebar.setContent("<div><a href=" + foto + " target=_blank><img height='200' src=" + feature.properties["gx_media_links"] + " style='cursor:zoom-in'></a></div>" + "<br>LUGAR: " + feature.properties.name + "<br>FREGUESIA: " + feature.properties.FREGUESIA + "<br>PAINEL: " + feature.properties.PAINEL + "<br> DESCRIÇÃO DO ORATÓRIO: " + feature.properties["DESCRIÇÃO DO ORATÓRIO"] + "<br><br>" + obs);
